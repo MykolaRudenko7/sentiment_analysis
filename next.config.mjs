@@ -1,6 +1,7 @@
 /** @type {import('next').NextConfig} */
 
 const nextConfig = {
+    output: 'standalone',
     sassOptions: {
         additionalData: `@import "src/styles/main.scss";`,
     },
