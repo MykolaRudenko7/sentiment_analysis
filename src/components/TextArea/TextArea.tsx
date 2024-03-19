@@ -1,6 +1,6 @@
 'use client'
 
-import { ChangeEvent, useState, useId, useCallback, useEffect } from 'react'
+import { ChangeEvent, useState, useId, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ApiService from 'services/apiService'
 import { emotionConfig } from 'helpers/config'
@@ -16,7 +16,7 @@ export default function TextArea() {
     const [loading, setLoading] = useState(false)
     const textareaId = useId()
 
-    const runPredictions = useCallback(async (text: string) => {
+    const runPredictions = async (text: string) => {
         try {
             if (text) {
                 setLoading(true)
@@ -29,20 +29,13 @@ export default function TextArea() {
         } finally {
             setLoading(false)
         }
-    }, [])
+    }
 
-    const handleInputChange = useCallback(
-        (e: ChangeEvent<HTMLTextAreaElement>): void => {
-            const { value } = e.target
-            setInputText(value)
-            setShowClearButton(value.length > 0)
-
-            setTimeout(() => {
-                runPredictions(value)
-            }, 1000)
-        },
-        [runPredictions]
-    )
+    const handleInputChange = (e: ChangeEvent<HTMLTextAreaElement>): void => {
+        const { value } = e.target
+        setInputText(value)
+        setShowClearButton(value.length > 0)
+    }
 
     const clearInput = () => {
         setInputText('')
@@ -50,6 +43,16 @@ export default function TextArea() {
         setOutputText([])
         setErrorMessage(null)
     }
+
+    useEffect(() => {
+        const timeoutId = setTimeout(() => {
+            if (inputText) {
+                runPredictions(inputText)
+            }
+        }, 1500)
+
+        return () => clearTimeout(timeoutId)
+    }, [inputText])
 
     useEffect(() => {
         if (outputText.length > 0) {

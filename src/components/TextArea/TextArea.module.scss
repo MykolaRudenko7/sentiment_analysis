@@ -79,14 +79,14 @@
 .clearButton {
     font-weight: $fontWeightMedium;
     font-size: $adaptiveFontSize;
+    color: $mainWhite;
     transition: all 200ms ease-in-out;
     position: absolute;
     top: clamp(8.5rem, 6.6429rem + 5.8036vw, 15rem);
     right: 1rem;
-    color: $mainRed;
 
     &:hover {
-        transform: scale(1.1);
+        transform: scale(1.05);
     }
 
     &:active,
