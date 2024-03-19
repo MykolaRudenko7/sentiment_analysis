@@ -63,8 +63,8 @@ jobs:
                   docker build -t mykolarud/sentiment_analysis:latest .
                   docker push mykolarud/sentiment_analysis:latest
 
-            # - name: Deploy Docker Image
-            #   env:
-            #       deploy_url: ${{ secrets.RENDER_DEPLOY_DOCKER_HOOK_URL }}
-            #   run: |
-            #       curl "$deploy_url"
+            - name: Deploy Docker Image
+              env:
+                  deploy_url: ${{ secrets.RENDER_DEPLOY_DOCKER_HOOK_URL }}
+              run: |
+                  curl "$deploy_url"
