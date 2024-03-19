@@ -10,6 +10,7 @@
     box-shadow: $boxShadow;
     -webkit-backdrop-filter: blur(0.5rem);
     backdrop-filter: blur(0.5rem);
+    margin: 0 auto;
 }
 
 .title {
@@ -18,14 +19,13 @@
 
 .form {
     position: relative;
-    width: 70%;
 }
 
 .textarea {
+    width: clamp(20rem, 4.2857rem + 49.1071vw, 75rem);
     font-weight: $fontWeightMedium;
     font-size: $adaptiveFontSize;
-    margin: 3rem 0;
-    width: 100%;
+    margin: 3.5rem 0;
     padding: 0.5rem;
     border-radius: 0.5rem;
     resize: none;
@@ -49,7 +49,7 @@
 
 .textarea:focus + .label,
 .textarea:valid + .label {
-    top: 1rem;
+    top: 0.5rem;
     left: 0.5rem;
 }
 
@@ -76,9 +76,11 @@
 }
 
 .clearButton {
+    font-weight: $fontWeightMedium;
+    font-size: $adaptiveFontSize;
     transition: all 200ms ease-in-out;
     position: absolute;
-    top: 9.5rem;
+    top: clamp(8.5rem, 6.6429rem + 5.8036vw, 15rem);
     right: 1rem;
     color: $mainRed;
 
