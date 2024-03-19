@@ -5,7 +5,11 @@ const { apiEndpoint } = paths
 
 export default class ApiService {
     static async fetchSmile(inputText: string) {
-        const response = await axiosInstance.post(apiEndpoint, JSON.stringify({ inputText }))
-        return response.data.filteredResponse
+        if (inputText.trim() !== '') {
+            const endpoint = apiEndpoint || ''
+            const response = await axiosInstance.post(endpoint, JSON.stringify({ inputText }))
+            return response.data.filteredResponse
+        }
+        throw new Error('Input text is empty')
     }
 }
