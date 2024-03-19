@@ -4,6 +4,7 @@ import { ChangeEvent, useState, useId, useCallback, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import ApiService from 'services/apiService'
 import { emotionConfig } from 'helpers/config'
+import Loader from 'components/Loader/Loader'
 import styles from 'components/TextArea/TextArea.module.scss'
 
 export default function TextArea() {
@@ -12,17 +13,21 @@ export default function TextArea() {
     const [errorMessage, setErrorMessage] = useState<string | null>(null)
     const [emotionColor, setEmotionColor] = useState('')
     const [showClearButton, setShowClearButton] = useState(false)
+    const [loading, setLoading] = useState(false)
     const textareaId = useId()
 
     const runPredictions = useCallback(async (text: string) => {
         try {
             if (text) {
+                setLoading(true)
                 const res = await ApiService.fetchSmile(text)
                 setOutputText(res)
                 setErrorMessage(null)
             }
         } catch (error) {
             setErrorMessage('An error occurred while fetching smile.')
+        } finally {
+            setLoading(false)
         }
     }, [])
 
@@ -76,26 +81,30 @@ export default function TextArea() {
                     </button>
                 )}
             </form>
-            <AnimatePresence>
-                {outputText.length > 0 && (
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.5 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        key="modal"
-                        layout
-                        transition={{ duration: 0.5 }}
-                        className={styles.output}
-                        style={{ backgroundColor: emotionColor }}
-                    >
-                        {outputText?.map(({ label }) => (
-                            <p className={styles.outputText} key={label}>
-                                {label} {emotionConfig[label].emoji}
-                            </p>
-                        ))}
-                        {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
-                    </motion.div>
-                )}
-            </AnimatePresence>
+            {loading ? (
+                <Loader />
+            ) : (
+                <AnimatePresence>
+                    {outputText.length > 0 && (
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.5 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            key="modal"
+                            layout
+                            transition={{ duration: 0.5 }}
+                            className={styles.output}
+                            style={{ backgroundColor: emotionColor }}
+                        >
+                            {outputText?.map(({ label }) => (
+                                <p className={styles.outputText} key={label}>
+                                    {label} {emotionConfig[label].emoji}
+                                </p>
+                            ))}
+                            {errorMessage && <p className={styles.errorMessage}>{errorMessage}</p>}
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            )}
         </motion.div>
     )
 }
