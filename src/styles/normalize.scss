@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    margin: 0;
+    margin: 0 auto;
     color: $mainWhite;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
         'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
@@ -16,7 +16,7 @@ body {
     scroll-behavior: smooth;
     scrollbar-width: thin;
     text-rendering: optimizespeed;
-    min-width: 32rem;
+    max-width: 144rem;
 
     &::-webkit-scrollbar {
         width: 0.8rem;

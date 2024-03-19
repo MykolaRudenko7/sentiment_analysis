@@ -1,8 +1,8 @@
 import { Montserrat } from 'next/font/google'
 import React from 'react'
 import type { Metadata } from 'next'
-import 'styles/normalize.scss'
 import 'styles/reset.scss'
+import 'styles/normalize.scss'
 
 const montserrat = Montserrat({ subsets: ['latin'] })
 
