@@ -1,0 +1,29 @@
+html {
+    font-size: $mainFontSize;
+}
+
+body {
+    margin: 0;
+    color: $mainWhite;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell,
+        'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-weight: $fontWeightRegular;
+    background: $bodyBackground;
+    box-sizing: border-box;
+    min-height: 100vh;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    text-rendering: optimizespeed;
+    min-width: 32rem;
+
+    &::-webkit-scrollbar {
+        width: 0.8rem;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        border-radius: 0.2rem;
+        background-color: $mainRed;
+    }
+}

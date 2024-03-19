@@ -1,0 +1,93 @@
+.wrapper {
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    background-color: $glassEffectBackground;
+    border: 0.2rem solid $glassEffectBackground;
+    border-radius: 0.75rem;
+    box-shadow: $boxShadow;
+    -webkit-backdrop-filter: blur(0.5rem);
+    backdrop-filter: blur(0.5rem);
+}
+
+.title {
+    font-size: clamp(1.6rem, 0.3429rem + 3.9286vw, 6rem);
+}
+
+.form {
+    position: relative;
+    width: 70%;
+}
+
+.textarea {
+    font-weight: $fontWeightMedium;
+    font-size: $adaptiveFontSize;
+    margin: 3rem 0;
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    resize: none;
+    border: $mainRed 0.2rem dotted;
+
+    &:focus {
+        border: $mainRed 0.2rem solid;
+    }
+}
+
+.label {
+    font-weight: 500;
+    position: absolute;
+    top: 4rem;
+    left: 1rem;
+    color: $mainWhite;
+    transition: 250ms;
+    pointer-events: none;
+    font-size: $adaptiveFontSize;
+}
+
+.textarea:focus + .label,
+.textarea:valid + .label {
+    top: 1rem;
+    left: 0.5rem;
+}
+
+.inputText {
+    padding: 1rem;
+    font-weight: $fontWeightMedium;
+}
+
+.output {
+    padding: 1rem;
+    border-radius: 1rem;
+    background-color: $mainRed;
+}
+
+.outputText {
+    font-weight: $fontWeightMedium;
+    font-size: $adaptiveFontSize;
+}
+
+.errorMessage {
+    font-weight: $fontWeightMedium;
+    font-size: $adaptiveFontSize;
+    color: $mainRed;
+}
+
+.clearButton {
+    transition: all 200ms ease-in-out;
+    position: absolute;
+    top: 9.5rem;
+    right: 1rem;
+    color: $mainRed;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+
+    &:active,
+    &:focus {
+        transform: scale(0.95);
+    }
+}
