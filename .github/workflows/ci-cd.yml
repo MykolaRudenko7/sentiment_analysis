@@ -40,14 +40,11 @@ jobs:
               run: |
                   echo "${{ secrets.ENV_LOCAL}}" > .env.local
 
-            - name: Run prettier
-              run: npm run format
-
-            - name: Run stylelint
-              run: npm run stylelint:fix
-
-            - name: Run linter
-              run: npm run lint:fix
+            - name: Run code quality checks
+              run: |
+                  npm run prettier
+                  npm run stylelint
+                  npm run lint:fix
 
             - name: Build Next.js app
               run: npm run build
