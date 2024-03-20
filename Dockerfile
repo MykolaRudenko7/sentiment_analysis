@@ -12,6 +12,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
+RUN chmod +x next
 RUN npm run build
 
 FROM base AS runner
